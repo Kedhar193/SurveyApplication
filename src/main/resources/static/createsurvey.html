@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Survey</title>
+</head>
+<body>
+    <h1>Create Survey</h1>
+
+    <form id="surveyForm" action="/survey/create" method="post" onsubmit="prepareAndSubmit(event)">
+        <label for="surveyTitle">Survey Title:</label>
+        <input type="text" id="surveyTitle" name="surveyTitle" required>
+
+        <div id="questionsContainer">
+            <!-- Questions will be dynamically added here -->
+        </div>
+
+        <button type="button" onclick="addQuestion()">Add Question</button>
+        <button type="submit">Submit Survey</button>
+    </form>
+
+    <script>
+        function addQuestion() {
+            const questionsContainer = document.getElementById('questionsContainer');
+
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+
+            const questionText = document.createElement('input');
+            questionText.type = 'text';
+            questionText.name = 'questions[].questionText';
+            questionText.placeholder = 'Enter Question Text';
+            questionText.required = true;
+
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'optionsContainer';
+
+            const addOptionButton = document.createElement('button');
+            addOptionButton.type = 'button';
+            addOptionButton.textContent = 'Add Option';
+            addOptionButton.onclick = function() {
+                addOption(optionsContainer);
+            };
+
+            const removeQuestionButton = document.createElement('button');
+            removeQuestionButton.type = 'button';
+            removeQuestionButton.textContent = 'Remove Question';
+            removeQuestionButton.onclick = function() {
+                questionsContainer.removeChild(questionDiv);
+            };
+
+            questionDiv.appendChild(questionText);
+            questionDiv.appendChild(optionsContainer);
+            questionDiv.appendChild(addOptionButton);
+            questionDiv.appendChild(removeQuestionButton);
+
+            questionsContainer.appendChild(questionDiv);
+        }
+
+        function addOption(optionsContainer) {
+            const optionInput = document.createElement('input');
+            optionInput.type = 'text';
+            optionInput.name = 'options[].optionText';  // Change the name to reflect the desired structure
+            optionInput.placeholder = 'Enter Option Text';
+            optionInput.required = true;
+
+            const removeOptionButton = document.createElement('button');
+            removeOptionButton.type = 'button';
+            removeOptionButton.textContent = 'Remove Option';
+            removeOptionButton.onclick = function() {
+                optionsContainer.removeChild(optionInput);
+                optionsContainer.removeChild(removeOptionButton);
+            };
+
+            optionsContainer.appendChild(optionInput);
+            optionsContainer.appendChild(removeOptionButton);
+        }
+
+        function prepareAndSubmit(event) {
+            event.preventDefault();
+
+            const formData = new FormData(document.getElementById('surveyForm'));
+            const jsonData = {
+                surveyTitle: formData.get('surveyTitle'),
+                questions: [],
+            };
+
+            formData.getAll('questions[].questionText').forEach((questionText, index) => {
+                const question = {
+                    questionText,
+                    options: [],
+                };
+
+                formData.getAll(`options[].optionText`).forEach((optionText, optionIndex) => {
+                    if (Math.floor(optionIndex / 2) === index) {
+                        question.options.push({ optionText });
+                    }
+                });
+
+                jsonData.questions.push(question);
+            });
+
+            console.log(JSON.stringify(jsonData));
+
+            // Now you can submit the JSON data using fetch or any other method
+            fetch('/survey/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData),
+            });
+        }
+    </script>
+</body>
+</html>
