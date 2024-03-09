@@ -8,14 +8,14 @@ A comprehensive Survey Application with role based authentication (Admin and Use
 
   
 
-- This application has login and signup mechanisms to authorize users . The passwords are encrypted carefully and stored in the database with the username .
+- This application has **login and signup** mechanisms to authorize users . **The passwords are encrypted** carefully and stored in the database with the username .
 
   
 
 - The application implements role based authentication . It basically contains two roles 1. admin   2. user
 
 
-- Only admin is able to access createsurvey.html page which is to create surveys . The surveys are stored in MySql database maintaining proper structure and organization of questions and dynamic options . A survey can have any number of questions and each question can have any number of options . Only admin can create Survey and user can only access and answer surveys .
+- **Only admin is able to access createsurvey.html page** which is to create surveys . The surveys are stored in MySql database maintaining proper structure and organization of questions and dynamic options . A survey can have any number of questions and each question can have any number of options . Only admin can create Survey and user can only access and answer surveys .
 
   ![project2-2](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/4b20a668-31da-476e-ac35-2b77833f0be6)
 
