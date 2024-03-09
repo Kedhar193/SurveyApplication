@@ -1,5 +1,42 @@
 # full-stack-projects-2
 
+## Overview
+
+  - This Survey Application allows admin to create surveys . Users can give response to the surveys . Application incorporates proper authentication and authorization .
+
+## Features
+  - User authorization
+
+  - Role based authentication
+
+  - Survey creation . Each survey can have any number of questions and each question can have any number of options (dynamic questions and options).
+
+  - Password Encryption  
+
+  - Response submition
+  
+  - Data base integration
+
+## Technologies Used
+
+  -Spring Boot
+
+  -Html , Css , Javascript
+
+  -Thymeleaf
+
+  -Spring Security
+
+  -Spring Data Jpa
+
+  -Hibernate
+
+  -MySql
+
+
+## Demo
+
+
 A comprehensive Survey Application with role based authentication (Admin and User roles).
 
 - The home page of the application has two links one for login and one for signup
