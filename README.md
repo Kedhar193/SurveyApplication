@@ -13,7 +13,7 @@
 
   - Password Encryption  
 
-  - Response submition
+  - Response submission
   
   - Data base integration
 
