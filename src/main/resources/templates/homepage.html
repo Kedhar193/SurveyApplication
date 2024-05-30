@@ -1,26 +1,140 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey Application</title>
-    <style>
-        /* Your CSS styles here */
-    </style>
+  <meta charset="UTF-8">
+  <title>Survey Application</title>
+  <style>
+    /* Your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://media.istockphoto.com/id/1188461796/vector/question-mark-low-poly-design-abstract-geometric-template-punctuation-mark-wireframe-mesh.jpg?s=612x612&w=0&k=20&c=4e9T8DfeNzM_RnmOgW_q2-1wvi0oTwfmfUtOqv1L_uA='); /* Background image URL */
+      background-size: cover; /* Cover the entire viewport */
+      background-position: center; /* Center the background image */
+      color: #333;
+      display: flex; /* Make body the flex container */
+      min-height: 100vh; /* Ensures full viewport height */
+      flex-direction: column;
+    }
+
+    .container {
+      flex: 1; /* Make container take all remaining space */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Vertically center content */
+      padding: 20px;
+    }
+
+    .header {
+      background-color: rgba(26, 26, 26, 0); /* Transparent initially */
+      color: #fff; /* White text color for header */
+      padding: 15px 60px; /* Adjusted padding for increased width */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px 10px 0 0;
+      /* Increase height for larger header */
+      height: 70px; /* Reduce height */
+      /* Increase width */
+      max-width: 1000px;
+      transition: background-color 0.3s; /* Add transition effect */
+    }
+
+    .header:hover {
+      background-color: rgba(26, 26, 26, 0.8); /* Darken background on hover */
+      transform: scale(1.02);
+    }
+
+   .header h1 {
+  margin: 0;
+  font-size: 24px;
+  flex: 1; /* Flex grows title to fill space */
+  margin-right: 40px; /* Increase space between title and buttons */
+   /* Change text color to steel blue */
+  /* Glowing effect */
+  text-shadow: 0 0 5px #87CEFA, 0 0 10px #87CEFA, 0 0 15px #87CEFA, 0 0 20px #87CEFA, 0 0 25px #87CEFA, 0 0 30px #87CEFA, 0 0 35px #87CEFA;
+}
+
+
+
+    .call-to-action {
+      display: flex;
+      justify-content: flex-end;
+      margin-left: 40px; /* Increase space between buttons and title */
+    }
+
+    .call-to-action a {
+      display: inline-block;
+      margin-left: 10px;
+      text-decoration: none;
+      color: #fff;
+      padding: 10px 20px;
+      background-color: #ea4335; /* Red color for login and signup buttons */
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .call-to-action a:hover {
+      background-color: #cc372b;
+      transform: scale(1.05); /* Increase size on hover */
+    }
+
+    .content {
+      padding: 20px;
+      /* Dark red background color for content, initially transparent */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, background-color 0.3s; /* Enable zoom and background color transition on hover */
+      margin-top: 0; /* Move content container up (remove margin) */
+      /* Reduce width for both header and content */
+      max-width: 700px; /* Set a max-width for both */
+    }
+
+    .content:hover {
+      background-color:#4682B4;
+      transform: scale(1.02);
+      color : white;
+    }
+
+    .content p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        align-items: center; /* Center elements on smaller screens */
+      }
+
+      .header {
+        border-radius: 10px;
+      }
+
+      .content {
+        margin-top: 10px; /* Adjust spacing on smaller screens */
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-<header>
-    <h1>Survey Application</h1>
-</header>
-
-<main>
-    <img th:src="@{data:data:image/jpeg;base64,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}" alt="Survey App Logo" class="logo">
-    <div class="links">
+  <div class="container">
+    <div class="header">
+      <h1><b>Survey Application</b></h1>
+      <div class="call-to-action">
         <a th:href="@{/login}">Login</a>
         <a th:href="@{/signup}">Sign Up</a>
+      </div>
     </div>
-</main>
 
+    <div class="content">
+      <p>This survey application allows administrators to create dynamic surveys with custom questions and options. Users can respond to these surveys and provide valuable feedback.</p>
+
+      <p>Sign up now to start creating surveys or log in if you already have an account.</p>
+    </div>
+  </div>
 </body>
+
 </html>
