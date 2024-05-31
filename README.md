@@ -74,7 +74,8 @@ A comprehensive Survey Application with role based authentication (Admin and Use
 - ###### Here I am logging in with user mail and password instead of admin
 
 
-  ![project2-4](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/2f288013-8a6c-4eeb-8e25-8dedd69fb4e1)
+  ![Screenshot 2024-05-31 142942](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/3f633c9b-a968-4bed-aea3-43c3097fcb92)
+
 
 
 
@@ -88,7 +89,8 @@ A comprehensive Survey Application with role based authentication (Admin and Use
 
 - ###### But user can give response to the surveys
 
-  ![project2-6](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/3608e295-d13e-4696-a872-8147feb78307)
+  ![Screenshot 2024-05-31 143128](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/9ffc2843-ed7b-457d-bbc3-2091ef912fa8)
+
 
 
 
