@@ -57,7 +57,8 @@ A comprehensive Survey Application with role based authentication (Admin and Use
 
 - **Only admin is able to access createsurvey.html page** which is to create surveys . The surveys are stored in MySql database maintaining proper structure and organization of questions and dynamic options . A survey can have any number of questions and each question can have any number of options . Only admin can create Survey and user can only access and answer surveys .
 
-  ![project2-2](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/4b20a668-31da-476e-ac35-2b77833f0be6)
+ ![Screenshot 2024-05-31 132245](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/612702a0-a82b-4ded-85e6-cb0d83dc7f97)
+
 
 
 
@@ -65,7 +66,8 @@ A comprehensive Survey Application with role based authentication (Admin and Use
 - ###### Here I am able to access create survey page since i am logging using admin mail and password .
 
   
-  ![project2-3](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/156176a3-ba27-4275-b98a-13d575f2aa72)
+  ![Screenshot 2024-05-31 142251](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/585787f5-1e4b-48c7-88db-31136d1bc95b)
+
 
 
 
