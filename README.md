@@ -41,7 +41,8 @@ A comprehensive Survey Application with role based authentication (Admin and Use
 
 - The home page of the application has two links one for login and one for signup
 
-  ![project2-1](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/03c0954c-32ad-405b-8368-0f276b5ea3c2)
+  ![Screenshot 2024-05-31 131928](https://github.com/Kedhar193/full-stack-projects-2/assets/115712936/be86c233-0011-46f1-a033-621f1fbd0d8d)
+
 
   
 
