@@ -1,60 +1,115 @@
-<!-- survey.html -->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- ... (existing head content) ... -->
+    <title>Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .question {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .question strong {
+            font-weight: bold;
+        }
+
+        .options {
+            margin-top: 10px;
+        }
+
+        .options ul {
+            padding: 0;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+        }
+
+        .options label {
+            display: block;
+            cursor: pointer;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #selectedOptions {
+            display: none;
+        }
+    </style>
 </head>
-<!-- survey.html -->
-
-<!-- ... (existing head content) ... -->
-
 <body>
 
-    <!-- ... (existing body content) ... -->
+<h1>Survey</h1>
 
-    <form th:action="@{'/survey/submit/' + ${survey.surveyId}}" method="post" enctype="application/x-www-form-urlencoded">
+<form th:action="@{'/survey/submit/' + ${survey.surveyId}}" method="post" enctype="application/x-www-form-urlencoded">
 
-        <ul>
-            <!-- Iterate over questions and display them -->
-            <li th:each="question, questionIndex : ${survey.questions}" class="question">
-                <div>
-                    <strong th:text="${'Q' + (questionIndex.index + 1) + ': ' + question.questionText}"></strong>
+    <ul>
+        <li th:each="question, questionIndex : ${survey.questions}" class="question">
+            <div>
+                <strong th:text="${'Q' + (questionIndex.index + 1) + ': ' + question.questionText}"></strong>
 
-                    <!-- Check if question has options -->
-                    <div th:if="${question.options != null and not #lists.isEmpty(question.options)}" class="options">
-                        <ul>
-                            <!-- Iterate over options and display them with radio buttons -->
-                            <li th:each="option, optionIndex : ${question.options}">
-                                <label>
-                                    <input type="radio" th:name="${'question-' + questionIndex.index}" th:value="${optionIndex.index}" 
-                                           th:attr="data-question-id=${question.questionId}" th:text="${option.optionText}" />
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
+                <div th:if="${question.options != null and not #lists.isEmpty(question.options)}" class="options">
+                    <ul>
+                        <li th:each="option, optionIndex : ${question.options}">
+                            <label>
+                                <input type="radio" th:name="${'question-' + questionIndex.index}" th:value="${optionIndex.index}"
+                                       th:attr="data-question-id=${question.questionId}" th:text="${option.optionText}" />
+                            </label>
+                        </li>
+                    </ul>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </li>
+    </ul>
 
-        <!-- Submit button -->
-        <button type="button" class="submit-btn" onclick="updateOptionCounts()">Submit</button>
+    <button type="button" class="submit-btn" onclick="updateOptionCounts()">Submit</button>
 
-        <!-- Hidden input to include selected options in the request payload -->
-        <input type="hidden" th:name="selectedOptions" id="selectedOptions" />
+    <input type="hidden" th:name="selectedOptions" id="selectedOptions" />
 
-    </form>
+</form>
 
-    <!-- JavaScript function to update selected options and submit the form -->
-    <script th:inline="javascript">
+<script th:inline="javascript">
 function updateOptionCounts() {
     var selectedOptions = [];
 
-    // Iterate over questions to get selected option index for each
     var questions = document.querySelectorAll('.question');
     questions.forEach(function (question) {
         var selectedOption = question.querySelector('input[type=radio]:checked');
-        if (selectedOption !== null) {  // Check if selectedOption is not null
+        if (selectedOption !== null) {
             var questionId = selectedOption.getAttribute('data-question-id');
             var selectedOptionIndex = selectedOption.value;
 
@@ -70,14 +125,11 @@ function updateOptionCounts() {
 
     console.log('Data being sent to the server:', selectedOptions);
 
-    // Include the selected options in the hidden input
     document.getElementById('selectedOptions').value = JSON.stringify(selectedOptions);
 
-    // Submit the form
     document.forms[0].submit();
 }
-
-    </script>
+</script>
 
 </body>
 </html>
