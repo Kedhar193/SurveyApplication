@@ -10,59 +10,47 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-image: url('https://media.istockphoto.com/id/1188461796/vector/question-mark-low-poly-design-abstract-geometric-template-punctuation-mark-wireframe-mesh.jpg?s=612x612&w=0&k=20&c=4e9T8DfeNzM_RnmOgW_q2-1wvi0oTwfmfUtOqv1L_uA='); /* Background image URL */
-      background-size: cover; /* Cover the entire viewport */
-      background-position: center; /* Center the background image */
+      background-image: url('https://media.istockphoto.com/id/1188461796/vector/question-mark-low-poly-design-abstract-geometric-template-punctuation-mark-wireframe-mesh.jpg?s=612x612&w=0&k=20&c=4e9T8DfeNzM_RnmOgW_q2-1wvi0oTwfmfUtOqv1L_uA=');
+      background-size: cover;
+      background-position: center;
       color: #333;
-      display: flex; /* Make body the flex container */
-      min-height: 100vh; /* Ensures full viewport height */
+      display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
     .container {
-      flex: 1; /* Make container take all remaining space */
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* Vertically center content */
-      padding: 20px;
+      align-items: center;
+      width: 95%;
+      max-width: 1600px; /* Increased max-width */
     }
 
     .header {
-      background-color: rgba(26, 26, 26, 0); /* Transparent initially */
-      color: #fff; /* White text color for header */
-      padding: 15px 60px; /* Adjusted padding for increased width */
+      background-color: transparent; /* Make background completely transparent */
+      color: #fff;
+      padding: 20px 20px 20px 40px; /* Added padding from left side */
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 10px 10px 0 0;
-      /* Increase height for larger header */
-      height: 70px; /* Reduce height */
-      /* Increase width */
-      max-width: 1000px;
-      transition: background-color 0.3s; /* Add transition effect */
+      align-items: center; /* Align items to the center */
+      border-radius: 10px 0 0 10px;
+      width: 100%;
+      position: relative;
+      margin-top: 20px;
     }
 
-    .header:hover {
-      background-color: rgba(26, 26, 26, 0.8); /* Darken background on hover */
-      transform: scale(1.02);
+    .header h1 {
+      font-size:400%;
+      margin-left: 100px;
+      font-size: 36px;
+      text-align: left; /* Align title to the left */
+      text-shadow: 0 0 5px #87CEFA, 0 0 10px #87CEFA, 0 0 15px #87CEFA, 0 0 20px #87CEFA, 0 0 25px #87CEFA, 0 0 30px #87CEFA, 0 0 35px #87CEFA;
+      padding-left: 10px; /* Added padding from left side */
     }
-
-   .header h1 {
-  margin: 0;
-  font-size: 24px;
-  flex: 1; /* Flex grows title to fill space */
-  margin-right: 40px; /* Increase space between title and buttons */
-   /* Change text color to steel blue */
-  /* Glowing effect */
-  text-shadow: 0 0 5px #87CEFA, 0 0 10px #87CEFA, 0 0 15px #87CEFA, 0 0 20px #87CEFA, 0 0 25px #87CEFA, 0 0 30px #87CEFA, 0 0 35px #87CEFA;
-}
-
-
 
     .call-to-action {
       display: flex;
-      justify-content: flex-end;
-      margin-left: 40px; /* Increase space between buttons and title */
+      margin-left: auto; /* Push buttons to the right */
     }
 
     .call-to-action a {
@@ -71,31 +59,33 @@
       text-decoration: none;
       color: #fff;
       padding: 10px 20px;
-      background-color: #ea4335; /* Red color for login and signup buttons */
+      background-color: #ea4335;
       border-radius: 5px;
       transition: background-color 0.3s;
     }
 
     .call-to-action a:hover {
       background-color: #cc372b;
-      transform: scale(1.05); /* Increase size on hover */
+      transform: scale(1.05);
     }
 
     .content {
-      padding: 20px;
-      /* Dark red background color for content, initially transparent */
+      background-color: rgba(255, 255, 255, 0.3);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, background-color 0.3s; /* Enable zoom and background color transition on hover */
-      margin-top: 0; /* Move content container up (remove margin) */
-      /* Reduce width for both header and content */
-      max-width: 700px; /* Set a max-width for both */
+      transition: transform 0.3s, background-color 0.3s;
+      width: 95%; /* Increased width */
+      max-width: 1200px; /* Increased max-width */
+      padding: 40px; /* Increased padding */
+      text-align: center;
+      margin-top: 15%; /* Increased margin-top to create more space */
+      margin-bottom: 20px;
     }
 
     .content:hover {
-      background-color:#4682B4;
+      background-color: #4682B4;
       transform: scale(1.02);
-      color : white;
+      color: white;
     }
 
     .content p {
@@ -104,16 +94,12 @@
     }
 
     @media (max-width: 768px) {
-      .container {
-        align-items: center; /* Center elements on smaller screens */
-      }
-
       .header {
         border-radius: 10px;
       }
 
       .content {
-        margin-top: 10px; /* Adjust spacing on smaller screens */
+        margin-top: 10px;
       }
     }
   </style>
@@ -122,7 +108,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1><b>Survey Application</b></h1>
+      <h1><b>&#09;Survey Application</b></h1> <!-- Added tab space for padding -->
       <div class="call-to-action">
         <a th:href="@{/login}">Login</a>
         <a th:href="@{/signup}">Sign Up</a>
@@ -138,3 +124,4 @@
 </body>
 
 </html>
+
